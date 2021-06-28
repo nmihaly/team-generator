@@ -2,11 +2,9 @@ const Employee = require("../lib/Employee");
 
 jest.mock('../lib/Employee');
 
-test("Employee", () => {
-    it("Creates an Employee object", () => {
+test("Creates an Employee object", () => {
         const employee = new Employee('Nick, 29, nick@gmail.com');
-        expect(typeof(e)).toBe("object");
-
+       
         expect(employee.name).toEqual(expect.any(String));
         expect(employee.id).toEqual(expect.any(Number));
         expect(employee.email).toEqual(expect.any(String));
@@ -27,7 +25,7 @@ test("Employee", () => {
     test('employee email', () => {
         const employee = new Employee('Nick, 29, nick@gmail.com');
 
-        expect(employee.getEmail()).toEqual(expect.any(String));
+        expect(employee.getEmail()).toEqual(expect.stringContaining(employee.email.toString()));
     });
 
     test('employee role', () => {
@@ -35,4 +33,3 @@ test("Employee", () => {
 
         expect(employee.getRole()).toEqual("Employee");
     });
-});

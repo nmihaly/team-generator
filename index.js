@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-//link lib files
+const generateHTML = require('./src/generateHTML');
+
 
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
@@ -8,11 +9,6 @@ const Manager = require('./lib/Manager');
 
 const teamMembers = [];
 
-function startApp() {
-    startHtml();
-    addMember();
-
-}
 
 const promptUser = () => {
     return inquirer.prompt([
@@ -88,5 +84,20 @@ const promptUser = () => {
 
                     };
                 });
-    )
-};
+
+            const writeFile = data => {
+                fs.writeFile('./dist/index.html', data, err => {
+
+                    if (err) {
+                        console.log(err);
+                        return;
+
+                    } else {
+                        console.log("Your team profile has been successfully created! Please check out the index.html")
+                    }
+                })
+            };
+
+        }
+        )
+}
